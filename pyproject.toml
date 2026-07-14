@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "llm-eval-harness"
+version = "0.1.0"
+description = "Local-first LLM/RAG evaluation harness with EM, F1, and latency metrics."
+requires-python = ">=3.10"
+dependencies = []
+
+[project.scripts]
+llm-eval-harness = "llm_eval_harness.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

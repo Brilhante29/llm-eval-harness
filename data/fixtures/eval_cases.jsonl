@@ -1,0 +1,4 @@
+{"id": "q1", "prediction": "Recall at k measures whether a relevant document appears in the top k results.", "reference": "Recall@k measures whether relevant documents appear in the top k retrieved results."}
+{"id": "q2", "prediction": "Grounded answers cite retrieved context and avoid unsupported claims.", "reference": "Grounded answers use retrieved context and avoid unsupported claims."}
+{"id": "q3", "prediction": "Latency is measured in milliseconds per query.", "reference": "Latency is measured in milliseconds per query."}
+{"id": "q4", "prediction": "A vector store persists embeddings for semantic search.", "reference": "A vector database stores embeddings for semantic search."}

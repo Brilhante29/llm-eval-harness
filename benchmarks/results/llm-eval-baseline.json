@@ -1,0 +1,29 @@
+{
+  "project": "llm-eval-harness",
+  "primary_metric": "f1",
+  "exact_match": 0.25,
+  "f1": 0.8449,
+  "avg_latency_ms": 0.1038,
+  "cases": [
+    {
+      "id": "q1",
+      "exact_match": 0.0,
+      "f1": 0.7407407407407408
+    },
+    {
+      "id": "q2",
+      "exact_match": 0.0,
+      "f1": 0.8888888888888888
+    },
+    {
+      "id": "q3",
+      "exact_match": 1.0,
+      "f1": 1.0
+    },
+    {
+      "id": "q4",
+      "exact_match": 0.0,
+      "f1": 0.75
+    }
+  ]
+}

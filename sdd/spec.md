@@ -1,63 +1,12 @@
-# Spec: llm-eval-harness
-
-## Number
-
-#2
+# Spec: 2 - llm-eval-harness
 
 ## Claim
 
-Este projeto prova que: avaliacao objetiva de RAG/LLM.
+Local-first evaluation harness for LLM/RAG answers with exact match, token F1, and reproducible latency benchmark.
 
-## Stack
+## Acceptance Criteria
 
-python, typer, pydantic, pytest, docker
-
-## User-visible output
-
-- Docker command: pending
-- README opens with: # #2 llm-eval-harness
-- Benchmark table: exact_match, f1, latency_ms
-
-## Scope
-
-In:
-
-- Implementar o menor produto funcional que prove o claim.
-- Rodar por Docker.
-- Gerar benchmark JSON reproduzivel.
-
-Out:
-
-- Publicar repo antes do primeiro resultado numerico.
-- Depender de segredo pago para o caminho default.
-
-## Architecture
-
-`	xt
-client -> app -> domain -> adapters -> benchmark output
-`
-
-## Benchmark
-
-Primary metric:
-
-- name: exact_match, f1, latency_ms
-- target: first reproducible baseline
-- command: pending
-- result file: enchmarks/results/*.json
-
-## Dataset or fixture
-
-- source: pending
-- size: pending
-- license: pending
-- deterministic seed: 42
-
-## Definition of done
-
-- [ ] Docker command works from clean clone.
-- [ ] README starts with project number and benchmark result.
-- [ ] Benchmark command writes JSON result.
-- [ ] Tests cover core behavior.
-- [ ] REFERENCES.md explains reuse.
-- [ ] No secret or paid credential required for default demo.
+- Runs locally with `python -m llm_eval_harness benchmark --output benchmarks/results/llm-eval-baseline.json`.
+- Runs in Docker with no paid secret.
+- Writes benchmark JSON under `benchmarks/results/`.
+- Keeps domain/evaluation logic independent from CLI and future providers.
