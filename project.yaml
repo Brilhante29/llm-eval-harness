@@ -7,7 +7,7 @@ program:
     - benchmark fixture
     - deterministic local evaluator
     - portfolio-compatible result JSON
-status: benchmarked
+status: published
 claim: Local-first evaluation harness for LLM/RAG answers with exact match, token F1, and reproducible latency benchmark.
 stack:
   - python
