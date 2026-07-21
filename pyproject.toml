@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "llm-eval-harness"
-version = "0.1.0"
-description = "Local-first LLM/RAG evaluation harness with EM, F1, and latency metrics."
+version = "0.2.0"
+description = "Artifact-driven local RAG/LLM evaluator with strict ID validation, EM, and token F1."
 requires-python = ">=3.10"
 dependencies = []
 

@@ -1,31 +1,36 @@
 # #2 llm-eval-harness
 
-**Claim:** Local-first evaluation harness for LLM/RAG answers with exact match, token F1, and reproducible latency benchmark.
+**Claim:** Artifact-driven local evaluator for RAG/LLM answers with exact match, token F1, producer identity, and strict case-ID validation.
 
-**Benchmark:** `f1` = `0.8449` on local deterministic fixtures. Result file: `benchmarks/results/llm-eval-baseline.json`.
+**Benchmark:** token F1 = `0.8449` and exact match = `0.25` across four versioned predictions produced by the `rag-knowledge-base` fixture. Evidence: `benchmarks/results/llm-eval-baseline.json`.
 
 ## What It Proves
 
-This repository is part of **AI Evaluation and Retrieval Systems**. It provides one measurable layer of the AI Evaluation & RAG Platform while keeping the default path local-first, Dockerized, and free of paid credentials.
+The harness evaluates output from another repository without importing its code. A producer writes `prediction-artifact/1.0` JSON; this project validates schema version, producer identity, duplicate IDs, missing cases, and unexpected cases before calculating EM and token F1.
+
+The committed predictions are deterministic fixtures shaped exactly like a RAG export. Their quality score proves the evaluator and integration boundary, not the quality of a live LLM.
 
 ## Architecture
 
 ```mermaid
 flowchart LR
-  Fixtures["Local fixtures"] --> Core["Evaluation core"]
-  Core --> CLI["CLI benchmark"]
-  CLI --> Result["Benchmark JSON"]
-  Core --> Future["Future provider adapters"]
+  RAG["RAG or LLM producer"] --> Artifact["prediction-artifact/1.0 JSON"]
+  References["Versioned references"] --> Gate["ID and schema gate"]
+  Artifact --> Gate
+  Gate --> Metrics["Exact match and token F1"]
+  Metrics --> Result["Shared benchmark JSON"]
 ```
 
-Dependency rule: evaluation core does not import provider SDKs, cloud SDKs, web frameworks, or GitHub automation.
+The contract boundary is `contracts/prediction-artifact.schema.json`. Producers may implement any stack as long as they emit that file shape.
 
 ## Run Locally
 
 ```powershell
 $env:PYTHONPATH = "src"
-python -m llm_eval_harness benchmark --output benchmarks/results/llm-eval-baseline.json
+python -m llm_eval_harness benchmark --references data/fixtures/references.jsonl --predictions data/fixtures/rag-predictions.v1.json --output benchmarks/results/llm-eval-baseline.json
 ```
+
+To evaluate a new RAG run, keep the reference IDs stable and replace only `--predictions` with the exported artifact path.
 
 ## Run With Docker
 
@@ -34,12 +39,14 @@ docker build -t llm-eval-harness .
 docker run --rm llm-eval-harness
 ```
 
-## Benchmark Result
+## Result Contract
 
-See `benchmarks/results/llm-eval-baseline.json`.
+The result includes the shared fields `project`, `metric`, `value`, `unit`, `timestamp`, `command`, `samples`, and `environment`. Producer latency from the artifact is reported separately from evaluator overhead.
 
-## Reuse Contract
+## Failure Semantics
 
-- Uses `portfolio-reuse-kit` for agent graph, SDD, validation, design system, and publication gate.
-- Records reusable improvement decisions in `sdd/reuse-improvement-review.md`.
-- Runs without paid secrets by default.
+- Duplicate reference or prediction IDs fail.
+- Missing prediction IDs fail.
+- Prediction IDs absent from the reference set fail.
+- Unknown artifact schema versions fail.
+- Metrics are never computed for a partial or ambiguous join.

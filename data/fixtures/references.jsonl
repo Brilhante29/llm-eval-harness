@@ -1,0 +1,4 @@
+{"id":"q1","reference":"Recall@k measures whether relevant documents appear in the top k retrieved results."}
+{"id":"q2","reference":"Grounded answers use retrieved context and avoid unsupported claims."}
+{"id":"q3","reference":"Latency is measured in milliseconds per query."}
+{"id":"q4","reference":"A vector database stores embeddings for semantic search."}
