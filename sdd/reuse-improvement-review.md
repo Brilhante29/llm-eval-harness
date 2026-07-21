@@ -15,20 +15,9 @@ Project: `2 - llm-eval-harness`
 
 | Finding | Classification | Kit Area | Action | Status |
 |---|---|---|---|---|
-| AI evaluation repos share the same local-first Python benchmark skeleton: fixtures, CLI, Docker, tests, and JSON result. | `backlog` | `templates`, `validation` | Promote to a reusable Python benchmark template after this macro confirms all five shapes. | pending |
-| Project-specific fixture content should remain in each repo. | `reject` | `templates` | Keep domain examples local to preserve each repo's proof. | done |
-
-## Patch Now Decisions
-
-- None; the kit already enforces the reuse-improvement gate.
-
-## Backlog Decisions
-
-- Add a reusable Python benchmark project template if the same skeleton remains stable after the macro is complete.
-
-## Rejected Improvements
-
-- Do not move this repo's fixture data into the kit.
+| Prediction producers need a language-neutral artifact contract with producer and run identity. | `patch_now` | `contracts` | Prove version 1.0 here, then promote the stable schema into the reuse kit. | implemented locally |
+| Portfolio benchmark results require enforced common top-level fields. | `backlog` | `validation` | Add schema validation to the kit publication gate. | pending |
+| Reference data and producer fixtures are project-specific. | `reject` | `templates` | Keep their content local; reuse only the schema. | done |
 
 ## Final Gate
 

@@ -2,22 +2,24 @@ id: 2
 name: llm-eval-harness
 program:
   id: ai-evaluation-retrieval
-  narrative_fit: Defines the objective answer-quality measurement layer used by the AI Evaluation and RAG Platform.
+  narrative_fit: Defines the artifact-driven answer-quality measurement layer used by the AI Evaluation and RAG Platform.
   shared_assets:
-    - benchmark fixture
-    - deterministic local evaluator
+    - prediction artifact schema
+    - deterministic EM and token F1 evaluator
     - portfolio-compatible result JSON
-status: published
-claim: Local-first evaluation harness for LLM/RAG answers with exact match, token F1, and reproducible latency benchmark.
+status: benchmarked
+claim: Artifact-driven local evaluator for RAG/LLM answers with exact match, token F1, producer identity, and strict case-ID validation.
 stack:
   - python
+  - json-schema
+  - jsonl
   - argparse
   - unittest
   - docker
 language_profile:
   primary: python
   secondary: []
-  reason: Deterministic evaluation logic is packaged as testable Python use cases with a CLI benchmark.
+  reason: Metrics, artifact validation, and CLI orchestration are deterministic and independently testable.
 decision_brain:
   agent_graph:
     mode: principal-agent-orchestrated
@@ -29,26 +31,26 @@ decision_brain:
     review_path: sdd/reuse-improvement-review.md
     current_status: backlog_recorded
   principles:
-    coupling_rule: Core evaluation code depends only on standard-library interfaces and local fixtures.
+    coupling_rule: Producers and evaluator exchange versioned files; neither imports the other's code.
     solid: [srp, ocp, lsp, isp, dip]
-    simplicity_rule: Use deterministic fixtures before adding external LLM, vector, or billing providers.
-    testability_rule: Benchmark logic is callable without HTTP, cloud, or paid credentials.
+    simplicity_rule: Validate a small versioned artifact before introducing queues or hosted evaluation services.
+    testability_rule: Metrics and validation run without HTTP, cloud, paid credentials, or producer runtime.
   stack_profile: python
   api_style: cli-first
-  messaging: none
+  messaging: artifact-file
   cloud:
     mode: none
     local_provider: kumo
     real_provider_target: none
-    adapter_rule: Future provider integrations must stay behind ports/adapters.
+    adapter_rule: Future artifact stores stay outside metric and validation code.
   database: fixture-files
   runtime: python-cli
-  library_policy: Prefer standard library for baseline reproducibility; add provider libraries only behind adapters.
+  library_policy: Keep core metrics and contract validation in the standard library.
   record_path: sdd/technical-decision.md
 architecture:
-  style: clean-architecture
-  reason: The metric and benchmark use cases must stay independent from CLI, fixtures, and future providers.
-  dependency_rule: Domain metrics and application benchmark orchestration do not import interface code.
+  style: pipeline-with-contract-boundary
+  reason: Reference loading, producer artifact validation, alignment, metrics, and result emission have separate responsibilities.
+  dependency_rule: CLI depends on artifact and evaluator modules; producer repositories depend only on the JSON schema.
 design_system:
   tokens: .portfolio/design-system/tokens.yaml
   readme_components: [readme_header, benchmark_card, architecture_card, references_table]
@@ -59,7 +61,7 @@ reuse:
 benchmark:
   primary_metric: f1
   unit: ratio
-  command: python -m llm_eval_harness benchmark --output benchmarks/results/llm-eval-baseline.json
+  command: python -m llm_eval_harness benchmark --references data/fixtures/references.jsonl --predictions data/fixtures/rag-predictions.v1.json --output benchmarks/results/llm-eval-baseline.json
   result_path: benchmarks/results/llm-eval-baseline.json
 release:
   docker: Dockerfile

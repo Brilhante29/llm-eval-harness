@@ -1,30 +1,25 @@
 # llm-eval-harness Specification
 
-## Purpose
+## Requirement: versioned producer boundary
 
-Local-first evaluation harness for LLM/RAG answers with exact match, token F1, and reproducible latency benchmark.
+The system SHALL accept prediction artifact version `1.0` from any producer without importing producer code.
 
-## Requirements
+## Requirement: complete case alignment
 
-### Requirement: reproducible portfolio proof
+The system SHALL reject duplicate, missing, and unexpected case IDs before computing metrics.
 
-The system SHALL expose a local-first path that proves the primary benchmark
-declared in `project.yaml` without paid credentials.
+### Scenario: missing and unexpected outputs
 
-#### Scenario: default verification
+- GIVEN references contain `q1` and `q2`
+- AND predictions contain `q1` and `q3`
+- WHEN validation runs
+- THEN it reports missing `q2` and unexpected `q3`
+- AND no metrics are emitted
 
-- GIVEN the repository is checked out with its committed fixtures
-- WHEN the documented Docker or local benchmark command runs
-- THEN a JSON result is written under `benchmarks/results/`
-- AND the README reports the same measured number
+## Requirement: shared benchmark evidence
 
-### Requirement: replaceable integrations
+The result SHALL include project, metric, value, unit, timestamp, command, samples, and environment. Producer identity and schema version SHALL remain traceable.
 
-The system SHALL keep external providers behind ports or adapters whenever a
-provider is not part of the core claim.
+## Requirement: latency separation
 
-#### Scenario: adapter substitution
-
-- GIVEN a local adapter and a future real-provider adapter implement the same port
-- WHEN either adapter is selected by configuration
-- THEN the application use cases keep the same observable contract
+Producer latency SHALL come from the prediction artifact and SHALL NOT be represented as evaluator execution latency.

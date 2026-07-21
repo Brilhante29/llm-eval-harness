@@ -1,21 +1,23 @@
-# Change Tasks: baseline
+# Change Tasks: artifact-driven-evaluation
 
 ## Planning
 
-- [x] Read `project.yaml` and the selected component pack.
-- [x] Generate the SDD, OpenSpec, and agent context artifacts.
-- [ ] Confirm the architecture and rejected alternatives.
+- [x] Define the producer/evaluator contract boundary.
+- [x] Record fail-fast ID parity semantics.
+- [x] Separate producer and evaluator latency.
 
 ## Implementation
 
-- [ ] Implement the smallest useful slice.
-- [ ] Keep domain/use-case code independent from infrastructure.
-- [ ] Add or update tests for the observable contract.
-- [ ] Update the benchmark and commit the JSON result.
+- [x] Add prediction artifact schema version `1.0`.
+- [x] Split independent references from RAG-shaped predictions.
+- [x] Reject duplicates, missing IDs, unexpected IDs, and unknown versions.
+- [x] Emit shared result fields, producer identity, samples, and environment.
+- [x] Update README, SDD, OpenSpec, tests, and baseline.
 
 ## Verification
 
-- [ ] Run the Docker path.
-- [ ] Run tests and project validation.
+- [x] Run compile and six unit tests.
+- [x] Run `tools/validate-project.ps1 -SkipDocker`.
+- [x] Build and execute `llm-eval-harness:audit`.
 - [ ] Run `openspec validate --strict` when the CLI is installed.
-- [ ] Review `sdd/reuse-improvement-review.md` and patch, backlog, or reject the finding.
+- [ ] Verify remote CI after publication.
