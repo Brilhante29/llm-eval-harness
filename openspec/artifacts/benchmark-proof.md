@@ -8,7 +8,7 @@
 - Exact match: `0.25`
 - Producer: `rag-knowledge-base@0.1.0`
 - Artifact schema: `1.0`
-- Result path: `benchmarks/results/llm-eval-baseline.json`
+- Publication result: `benchmarks/publication/llm-eval-baseline-v2.json`
 
 ## Command
 

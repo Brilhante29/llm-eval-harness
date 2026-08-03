@@ -3,7 +3,7 @@
   "metric": "f1",
   "value": 0.8449,
   "unit": "ratio",
-  "timestamp": "2026-07-21T18:37:53.112531Z",
+  "timestamp": "2026-08-03T06:20:42.809767Z",
   "command": "python -m llm_eval_harness benchmark --references data/fixtures/references.jsonl --predictions data/fixtures/rag-predictions.v1.json --output benchmarks/results/llm-eval-baseline.json",
   "repeat": 1,
   "samples": [
@@ -16,12 +16,12 @@
     "case_count": 4,
     "exact_match": 0.25,
     "f1": 0.8449,
-    "avg_evaluator_latency_ms": 0.5769,
+    "avg_evaluator_latency_ms": 0.0914,
     "avg_producer_latency_ms": 7.675
   },
   "environment": {
-    "python": "3.10.11",
-    "platform": "Windows-10-10.0.26200-SP0",
+    "python": "3.12.13",
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.41",
     "implementation": "cpython",
     "producer_project": "rag-knowledge-base",
     "producer_version": "0.1.0",
@@ -31,7 +31,7 @@
   "primary_metric": "f1",
   "exact_match": 0.25,
   "f1": 0.8449,
-  "avg_evaluator_latency_ms": 0.5769,
+  "avg_evaluator_latency_ms": 0.0914,
   "producer": {
     "project": "rag-knowledge-base",
     "version": "0.1.0",

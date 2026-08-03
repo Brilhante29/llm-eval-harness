@@ -22,4 +22,4 @@ Project: `2 - llm-eval-harness`
 
 - Local tests, benchmark, and validator must pass after each change.
 - Docker must execute the default artifact path.
-- Status stays `benchmarked` until remote publication and CI evidence exist.
+- Publication requires committed V2 evidence and successful CI on the exact final SHA.

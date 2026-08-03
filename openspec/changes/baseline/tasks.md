@@ -16,7 +16,7 @@
 
 ## Verification
 
-- [x] Run compile and six unit tests.
+- [x] Run compile and seven unit tests.
 - [x] Run `tools/validate-project.ps1 -SkipDocker`.
 - [x] Build and execute `llm-eval-harness:audit`.
 - [ ] Run `openspec validate --strict` when the CLI is installed.

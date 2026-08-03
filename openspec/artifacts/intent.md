@@ -23,11 +23,11 @@ Defines the objective answer-quality measurement layer used by the AI Evaluation
 
 ## Default Demo Path
 
-- Status: benchmarked
+- Status: published
 - Runtime: python-cli
 - Benchmark command: `python -m llm_eval_harness benchmark --output benchmarks/results/llm-eval-baseline.json`
 
 ## Public Proof
 
-- Benchmark: F1 = 0.84
-- Result path: `benchmarks/results/llm-eval-baseline.json`
+- Benchmark: F1 = 0.8449; exact match = 0.25
+- Result path: `benchmarks/publication/llm-eval-baseline-v2.json`

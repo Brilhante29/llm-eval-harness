@@ -2,7 +2,7 @@
 
 **Claim:** Artifact-driven local evaluator for RAG/LLM answers with exact match, token F1, producer identity, and strict case-ID validation.
 
-**Benchmark:** token F1 = `0.8449` and exact match = `0.25` across four versioned predictions produced by the `rag-knowledge-base` fixture. Evidence: `benchmarks/results/llm-eval-baseline.json`.
+**Benchmark:** token F1 = `0.8449` and exact match = `0.25` across four versioned predictions produced by the `rag-knowledge-base` fixture. Publication evidence: `benchmarks/publication/llm-eval-baseline-v2.json`; raw execution: `benchmarks/results/llm-eval-baseline.json`.
 
 ## What It Proves
 
