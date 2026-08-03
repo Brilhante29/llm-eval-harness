@@ -29,6 +29,8 @@ class MetricsTests(unittest.TestCase):
         self.assertEqual(result["project"], "llm-eval-harness")
         self.assertEqual(result["metric"], "f1")
         self.assertEqual(result["value"], result["f1"])
+        self.assertEqual(result["f1"], 0.8449)
+        self.assertEqual(result["exact_match"], 0.25)
         self.assertEqual(result["unit"], "ratio")
         self.assertEqual(len(result["samples"]), 4)
         self.assertEqual(result["environment"]["producer_project"], "rag-knowledge-base")

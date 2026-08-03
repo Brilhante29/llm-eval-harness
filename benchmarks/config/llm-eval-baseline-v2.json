@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "benchmark_id": "artifact-f1-v1",
+  "workload_version": "rag-predictions-v1",
+  "references": "data/fixtures/references.jsonl",
+  "predictions": "data/fixtures/rag-predictions.v1.json",
+  "measured_cases": 4,
+  "concurrency": 1,
+  "comparability_key": "llm-eval:f1:artifact-v1:4-cases"
+}

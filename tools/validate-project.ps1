@@ -43,7 +43,12 @@ $requiredFiles = @(
   "sdd/architecture-decision.md",
   "sdd/technical-decision.md",
   "sdd/agent-handoff.md",
-  "sdd/reuse-improvement-review.md"
+  "sdd/reuse-improvement-review.md",
+  "requirements-validation.lock",
+  "tools/generate-publication-benchmark.py",
+  "tools/validate_publication.py",
+  "benchmarks/config/llm-eval-baseline-v2.json",
+  ".portfolio/contracts/benchmark-result-v2.schema.json"
 )
 foreach ($file in $requiredFiles) { Require-File $file }
 
@@ -98,6 +103,7 @@ try {
     }
     $env:PYTHONPATH = $previousPythonPath
   }
+  Invoke-Checked "publication evidence" { python tools/validate_publication.py }
 } finally {
   Pop-Location
 }

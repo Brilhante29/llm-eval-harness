@@ -1,4 +1,4 @@
-FROM python:3.12-slim
+FROM python:3.12.13-slim@sha256:57cd7c3a7a273101a6485ba99423ee568157882804b1124b4dd04266317710de
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1
@@ -11,7 +11,7 @@ COPY contracts ./contracts
 COPY data ./data
 COPY benchmarks ./benchmarks
 
-RUN pip install --no-cache-dir .
+RUN pip install --no-cache-dir --no-deps .
 
 ENTRYPOINT ["python", "-m", "llm_eval_harness"]
 CMD ["benchmark", "--references", "data/fixtures/references.jsonl", "--predictions", "data/fixtures/rag-predictions.v1.json", "--output", "benchmarks/results/llm-eval-baseline.json"]
