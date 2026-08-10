@@ -4,9 +4,9 @@
 
 - Metric: `f1`
 - Unit: `ratio`
-- Result: `0.8449`
-- Exact match: `0.25`
-- Producer: `rag-knowledge-base@0.1.0`
+- Result: `0.5718`
+- Exact match: `0.00`
+- Producer: `rag-knowledge-base@0.2.0` pinned in `contracts/producers.lock.json`
 - Artifact schema: `1.0`
 - Publication result: `benchmarks/publication/llm-eval-baseline-v2.json`
 

@@ -2,34 +2,67 @@
   "schema_version": "1.0",
   "producer": {
     "project": "rag-knowledge-base",
-    "version": "0.1.0",
-    "run_id": "fixture-baseline-v1"
+    "version": "0.2.0",
+    "run_id": "rag-ee46136-baseline",
+    "source_commit": "ee461368fc59a94aaf8ea13cf0dadbbaf2ef0203"
   },
-  "created_at": "2026-07-21T00:00:00Z",
+  "created_at": "2026-08-10T00:46:07.158901Z",
   "predictions": [
     {
       "id": "q1",
-      "prediction": "Recall at k measures whether a relevant document appears in the top k results.",
-      "latency_ms": 8.4,
-      "context_ids": ["retrieval-metrics"]
+      "prediction": "Vector search stores numeric embeddings and compares a query vector with document vectors using cosine similarity or dot product Recall at k measures whether a relevant document appears in the top retrieved results",
+      "latency_ms": 0.31970000054570846,
+      "context_ids": [
+        "vector-search",
+        "benchmarking",
+        "ports-adapters"
+      ],
+      "metadata": {
+        "top_k": 3,
+        "mode": "top-retrieved-context"
+      }
     },
     {
       "id": "q2",
-      "prediction": "Grounded answers cite retrieved context and avoid unsupported claims.",
-      "latency_ms": 7.9,
-      "context_ids": ["rag-grounding"]
+      "prediction": "A retrieval augmented generation system indexes source documents splits them into chunks embeds each chunk as a vector retrieves the most relevant chunks for a question and returns grounded context before generation",
+      "latency_ms": 0.2727999999478925,
+      "context_ids": [
+        "rag-pipeline",
+        "hashing-embeddings",
+        "vector-search"
+      ],
+      "metadata": {
+        "top_k": 3,
+        "mode": "top-retrieved-context"
+      }
     },
     {
       "id": "q3",
-      "prediction": "Latency is measured in milliseconds per query.",
-      "latency_ms": 6.8,
-      "context_ids": ["latency"]
+      "prediction": "Portfolio repositories need one reproducible benchmark For a RAG knowledge base the core numbers are recall at k query latency in milliseconds and cost per query in dollars",
+      "latency_ms": 0.27269999918644316,
+      "context_ids": [
+        "benchmarking",
+        "rag-pipeline",
+        "vector-search"
+      ],
+      "metadata": {
+        "top_k": 3,
+        "mode": "top-retrieved-context"
+      }
     },
     {
       "id": "q4",
-      "prediction": "A vector store persists embeddings for semantic search.",
-      "latency_ms": 7.6,
-      "context_ids": ["vector-store"]
+      "prediction": "Vector search stores numeric embeddings and compares a query vector with document vectors using cosine similarity or dot product Recall at k measures whether a relevant document appears in the top retrieved results",
+      "latency_ms": 0.25610000011511147,
+      "context_ids": [
+        "vector-search",
+        "local-first-cloud",
+        "reuse-loop"
+      ],
+      "metadata": {
+        "top_k": 3,
+        "mode": "top-retrieved-context"
+      }
     }
   ]
 }

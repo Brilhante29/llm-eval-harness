@@ -7,7 +7,8 @@ Date: `2026-07-21`
 - Six unit tests passed, including duplicate IDs, missing/unexpected IDs, and unknown schema version failures.
 - `tools/validate-project.ps1 -SkipDocker` passed.
 - Docker image `llm-eval-harness:audit` built and executed successfully.
-- The container evaluated the `rag-knowledge-base` fixture at F1 `0.8449` and EM `0.25`.
+- The container evaluated a `rag-knowledge-base` artifact at F1 `0.5718` and EM `0.00`.
+- CI checks out the producer SHA from `contracts/producers.lock.json`, runs retrieval, exports a fresh artifact, and evaluates it through the public contract.
 - The result records producer project/version/run, artifact version, metric samples, command, timestamp, and environment.
 
 ## Remaining Risk

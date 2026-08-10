@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "producers": {
+    "rag-knowledge-base": {
+      "repository": "Brilhante29/rag-knowledge-base",
+      "commit": "ee461368fc59a94aaf8ea13cf0dadbbaf2ef0203",
+      "artifact_schema": "prediction-artifact/1.0"
+    }
+  }
+}

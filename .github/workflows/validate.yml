@@ -30,6 +30,33 @@ jobs:
       - name: Validate project and tests
         shell: pwsh
         run: ./tools/validate-project.ps1 -SkipDocker
+      - name: Read pinned RAG producer
+        id: rag-producer
+        shell: bash
+        run: |
+          echo "sha=$(python -c 'import json; print(json.load(open("contracts/producers.lock.json"))["producers"]["rag-knowledge-base"]["commit"])')" >> "$GITHUB_OUTPUT"
+      - name: Check out pinned RAG producer
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          repository: Brilhante29/rag-knowledge-base
+          ref: ${{ steps.rag-producer.outputs.sha }}
+          path: producer/rag-knowledge-base
+          persist-credentials: false
+      - name: Execute producer-consumer contract
+        env:
+          PYTHONPATH: ${{ github.workspace }}/src:${{ github.workspace }}/producer/rag-knowledge-base/src
+          RAG_SOURCE_COMMIT: ${{ steps.rag-producer.outputs.sha }}
+        run: |
+          python -m rag_knowledge_base export-eval-artifact \
+            --corpus producer/rag-knowledge-base/data/fixtures/corpus.jsonl \
+            --cases producer/rag-knowledge-base/data/fixtures/answer-eval.jsonl \
+            --index /tmp/rag-integration-index.json \
+            --output /tmp/rag-integration-predictions.json \
+            --run-id "ci-${GITHUB_RUN_ID}"
+          python -m llm_eval_harness benchmark \
+            --references producer/rag-knowledge-base/data/fixtures/answer-eval.jsonl \
+            --predictions /tmp/rag-integration-predictions.json \
+            --output /tmp/llm-integration-result.json
       - name: Build Docker image
         run: docker build --tag llm-eval-harness:ci .
       - name: Run benchmark in Docker

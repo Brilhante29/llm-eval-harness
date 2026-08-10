@@ -58,6 +58,12 @@ def load_prediction_artifact(path: Path) -> dict:
         ) from error
     if not isinstance(artifact, dict):
         raise ArtifactValidationError("prediction artifact must be an object")
+    allowed_fields = {"schema_version", "producer", "created_at", "predictions"}
+    unexpected_fields = sorted(set(artifact) - allowed_fields)
+    if unexpected_fields:
+        raise ArtifactValidationError(
+            f"prediction artifact has unexpected fields: {unexpected_fields}"
+        )
     if artifact.get("schema_version") != PREDICTION_ARTIFACT_VERSION:
         raise ArtifactValidationError(
             "prediction artifact schema_version must be "
@@ -70,6 +76,11 @@ def load_prediction_artifact(path: Path) -> dict:
     for field in ("project", "version", "run_id"):
         if not isinstance(producer.get(field), str) or not producer[field]:
             raise ArtifactValidationError(f"producer.{field} must be a non-empty string")
+    source_commit = producer.get("source_commit")
+    if source_commit is not None and (
+        not isinstance(source_commit, str) or not source_commit
+    ):
+        raise ArtifactValidationError("producer.source_commit must be a non-empty string")
     created_at = artifact.get("created_at")
     if not isinstance(created_at, str) or not created_at:
         raise ArtifactValidationError("created_at must be a non-empty string")
@@ -108,6 +119,17 @@ def load_prediction_artifact(path: Path) -> dict:
             raise ArtifactValidationError(
                 f"prediction {case_id} latency_ms must be non-negative"
             )
+        context_ids = row.get("context_ids")
+        if context_ids is not None and (
+            not isinstance(context_ids, list)
+            or any(not isinstance(item, str) or not item for item in context_ids)
+        ):
+            raise ArtifactValidationError(
+                f"prediction {case_id} context_ids must contain non-empty strings"
+            )
+        metadata = row.get("metadata")
+        if metadata is not None and not isinstance(metadata, dict):
+            raise ArtifactValidationError(f"prediction {case_id} metadata must be an object")
     return artifact
 
 

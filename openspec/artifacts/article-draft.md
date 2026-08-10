@@ -4,7 +4,7 @@ Local-first evaluation harness for LLM/RAG answers with exact match, token F1, a
 
 This repository belongs to the AI Evaluation and Retrieval Systems program. Its job is narrow: prove the measurable claim through the selected component pack before adding unrelated infrastructure or features.
 
-The benchmark is the proof. F1 = 0.8449 and exact match = 0.25 over four aligned cases. V2 provenance is stored in `benchmarks/publication/llm-eval-baseline-v2.json`; evaluator timing remains environment-specific in the raw artifact.
+The benchmark is the proof. F1 = 0.5718 and exact match = 0.00 over four cases exported by pinned `rag-knowledge-base` retrieval. V2 provenance is stored in `benchmarks/publication/llm-eval-baseline-v2.json`; evaluator timing remains environment-specific in the raw artifact.
 
 The important architecture decision is clean-architecture. The metric and benchmark use cases must stay independent from CLI, fixtures, and future providers.
 

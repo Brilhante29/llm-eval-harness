@@ -56,6 +56,8 @@ $requiredFiles = @(
   "sdd/agent-handoff.md",
   "sdd/reuse-improvement-review.md",
   "requirements-validation.lock",
+  "contracts/prediction-artifact.schema.json",
+  "contracts/producers.lock.json",
   "tools/generate-publication-benchmark.py",
   "tools/validate_publication.py",
   "benchmarks/config/llm-eval-baseline-v2.json",

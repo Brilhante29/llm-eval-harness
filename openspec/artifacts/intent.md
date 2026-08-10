@@ -29,5 +29,5 @@ Defines the objective answer-quality measurement layer used by the AI Evaluation
 
 ## Public Proof
 
-- Benchmark: F1 = 0.8449; exact match = 0.25
+- Benchmark: F1 = 0.5718; exact match = 0.00 from executed RAG retrieval
 - Result path: `benchmarks/publication/llm-eval-baseline-v2.json`

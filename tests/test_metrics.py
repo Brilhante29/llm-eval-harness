@@ -29,11 +29,15 @@ class MetricsTests(unittest.TestCase):
         self.assertEqual(result["project"], "llm-eval-harness")
         self.assertEqual(result["metric"], "f1")
         self.assertEqual(result["value"], result["f1"])
-        self.assertEqual(result["f1"], 0.8449)
-        self.assertEqual(result["exact_match"], 0.25)
+        self.assertEqual(result["f1"], 0.5718)
+        self.assertEqual(result["exact_match"], 0.0)
         self.assertEqual(result["unit"], "ratio")
         self.assertEqual(len(result["samples"]), 4)
         self.assertEqual(result["environment"]["producer_project"], "rag-knowledge-base")
+        self.assertEqual(
+            artifact["producer"]["source_commit"],
+            "ee461368fc59a94aaf8ea13cf0dadbbaf2ef0203",
+        )
         self.assertIn("timestamp", result)
         self.assertIn("command", result)
 
@@ -82,6 +86,38 @@ class MetricsTests(unittest.TestCase):
         artifact = self._fixture_artifact([{"id": "q1", "prediction": "a"}])
         artifact["created_at"] = "2026-07-21T00:00:00"
         with self.assertRaisesRegex(ArtifactValidationError, "UTC offset"):
+            self._load_temporary_artifact(artifact)
+
+    def test_runtime_validation_matches_optional_schema_fields(self):
+        artifact = self._fixture_artifact(
+            [
+                {
+                    "id": "q1",
+                    "prediction": "answer",
+                    "context_ids": ["doc-1"],
+                    "metadata": {"top_k": 1},
+                }
+            ]
+        )
+        artifact["producer"]["source_commit"] = "a" * 40
+        self.assertEqual(
+            self._load_temporary_artifact(artifact)["producer"]["source_commit"],
+            "a" * 40,
+        )
+
+        artifact["predictions"][0]["context_ids"] = [""]
+        with self.assertRaisesRegex(ArtifactValidationError, "context_ids"):
+            self._load_temporary_artifact(artifact)
+
+        artifact["predictions"][0]["context_ids"] = ["doc-1"]
+        artifact["predictions"][0]["metadata"] = []
+        with self.assertRaisesRegex(ArtifactValidationError, "metadata"):
+            self._load_temporary_artifact(artifact)
+
+    def test_rejects_uncontracted_top_level_fields(self):
+        artifact = self._fixture_artifact([{"id": "q1", "prediction": "answer"}])
+        artifact["extra"] = True
+        with self.assertRaisesRegex(ArtifactValidationError, "unexpected fields"):
             self._load_temporary_artifact(artifact)
 
     @staticmethod

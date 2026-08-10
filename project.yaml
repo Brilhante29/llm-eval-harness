@@ -7,6 +7,7 @@ program:
     - prediction artifact schema
     - deterministic EM and token F1 evaluator
     - portfolio-compatible result JSON
+    - pinned producer lock and executable RAG contract test
 status: published
 claim: Artifact-driven local evaluator for RAG/LLM answers with exact match, token F1, producer identity, and strict case-ID validation.
 stack:

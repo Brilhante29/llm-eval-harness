@@ -78,8 +78,8 @@ def main() -> None:
     require(v2.get("project") == "llm-eval-harness", "unexpected V2 project")
     require(v2.get("benchmark_id") == "artifact-f1-v1", "unexpected benchmark id")
     require(v1.get("metric") == "f1", "unexpected primary metric")
-    require(v1.get("value") == v1.get("f1") == 0.8449, "unexpected F1 baseline")
-    require(v1.get("exact_match") == 0.25, "unexpected exact-match baseline")
+    require(v1.get("value") == v1.get("f1") == 0.5718, "unexpected F1 baseline")
+    require(v1.get("exact_match") == 0.0, "unexpected exact-match baseline")
     require(v1.get("summary", {}).get("case_count") == 4, "expected four aligned cases")
     require(v1.get("environment", {}).get("producer_project") == "rag-knowledge-base", "unexpected producer")
 
@@ -97,7 +97,7 @@ def main() -> None:
     require(v2["comparability_key"] == config["comparability_key"], "comparability key mismatch")
     require(config["measured_cases"] == 4, "publication config case count mismatch")
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
-    require("0.8449" in readme and "0.25" in readme, "README metrics do not match evidence")
+    require("0.5718" in readme and "0.00" in readme, "README metrics do not match evidence")
     require(
         "result_path: benchmarks/publication/llm-eval-baseline-v2.json" in manifest,
         "manifest V2 path mismatch",
