@@ -7,11 +7,11 @@
     "runtime": "python-3.12.13-slim"
   },
   "execution": {
-    "command": "docker run --name llm-eval-pub-2c52ad5 llm-eval-harness:publication-2c52ad5",
-    "duration_seconds": 0.70891,
+    "command": "docker run --name llm-eval-pub-8a4bf21 llm-eval-harness:publication-8a4bf21",
+    "duration_seconds": 0.74057,
     "exit_code": 0,
     "repeat": 1,
-    "started_at": "2026-08-10T00:50:16.858369Z"
+    "started_at": "2026-08-10T00:53:02.369631Z"
   },
   "metrics": [
     {
@@ -25,7 +25,7 @@
         0.45454545454545453
       ],
       "summary": {
-        "avg_evaluator_latency_ms": 0.0557,
+        "avg_evaluator_latency_ms": 0.0741,
         "avg_producer_latency_ms": 0.2803,
         "case_count": 4,
         "exact_match": 0.0,
@@ -37,20 +37,20 @@
   ],
   "project": "llm-eval-harness",
   "provenance": {
-    "artifact_digest": "sha256:05f6c9e2442d0a275fe7830cbc0fc07864722271e7f9ccb5104dc3744ac31a29",
+    "artifact_digest": "sha256:00fcbaa36fb87e6935095585b9c79de1401010543fe0977e9763220457a3d790",
     "clean_tree": true,
     "dependency_lock_digest": "sha256:8908b8dde5f6a9d0cfb025ef464134e3b40197e4a2757ac573917e4ec7643a2c",
-    "image_digest": "sha256:b1de0782fa87ed838c302e39564a3866059f6f4d3937beda4d29184ea53f53ce",
-    "image_ref": "llm-eval-harness:publication-2c52ad5@sha256:b1de0782fa87ed838c302e39564a3866059f6f4d3937beda4d29184ea53f53ce",
+    "image_digest": "sha256:b51bf64dc0dcf90d33db52838a27dca11acb7d6940b07057acb338cba863b0e2",
+    "image_ref": "llm-eval-harness:publication-8a4bf21@sha256:b51bf64dc0dcf90d33db52838a27dca11acb7d6940b07057acb338cba863b0e2",
     "producer": "local",
-    "source_commit": "2c52ad5613866f374aac82430e6f55ac4aa9bf90"
+    "source_commit": "8a4bf21533d40b5870738aad7425fa0630c8df79"
   },
-  "run_id": "5f3d38d0-a767-4c5a-9040-a49ac7dbf86a",
+  "run_id": "192ba14b-0dda-4c59-bb25-4f9f706970e1",
   "schema_version": 2,
   "workload": {
     "concurrency": 1,
     "config_digest": "sha256:99c4e522af4ceeddd193721eca79b1a843814a93f627a68e226834cc10f9d4e2",
-    "fixture_digest": "sha256:5baf4b92a4cd7a87aa587737cd039c0edc54aeb9d104413d67efc957e671918d",
+    "fixture_digest": "sha256:4d8888d636eeee0636cce4ab6df1646b1a83d2dd212e72a7957ac368ecc158dc",
     "measured_iterations": 4,
     "version": "rag-ee46136",
     "warmup_iterations": 0
