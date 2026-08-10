@@ -1,4 +1,4 @@
-# Reuse Map: #<id> <project-name>
+# Reuse Map: #2 llm-eval-harness
 
 ## Kit Inputs
 
@@ -18,7 +18,9 @@ List only what this project adds to the kit. If a pattern will be useful in anot
 
 | Delta | Why it is project-specific or reusable | Action |
 |---|---|---|
-| _pending_ | _pending_ | `patch_now`, `backlog`, or `reject` |
+| `prediction-artifact/1.0` | shared by the RAG producer and answer evaluator | promoted to reuse-kit contracts |
+| immutable producer lock | reusable cross-repository CI pattern | promote to reuse-kit skill/template |
+| references and prediction snapshots | workload-specific evidence | keep local |
 
 ## Coupling Rule
 

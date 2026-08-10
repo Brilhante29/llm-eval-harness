@@ -2,15 +2,17 @@
 
 Completion requires evidence, not intent.
 
-- [ ] README opens with `#2 <name>` and reports the current benchmark number.
-- [ ] `project.yaml` names the problem, architecture, stack, primary metric, and result path.
-- [ ] SDD and OpenSpec artifacts agree with the implementation.
-- [ ] Domain logic is isolated from transport, persistence, broker, provider, and vendor details.
-- [ ] SOLID, DRY, KISS, YAGNI, and Law of Demeter review has no unexplained exception.
-- [ ] Tests cover the contract and the failure paths that affect the claim.
-- [ ] Docker runs the documented default path from a clean checkout.
-- [ ] CI runs the same meaningful checks without mutable dependencies or secrets.
-- [ ] Benchmark writes valid JSON under `benchmarks/results/` and can be repeated.
-- [ ] README, benchmark JSON, and `project.yaml` report the same primary metric.
-- [ ] Reuse review records every kit improvement, backlog item, or rejected duplication.
-- [ ] Independent review found no blocker and publication has not happened before this gate.
+- [x] README opens with `#2 llm-eval-harness` and reports the current benchmark number.
+- [x] `project.yaml` names the problem, architecture, stack, primary metric, and result path.
+- [x] SDD and OpenSpec artifacts agree with the implementation.
+- [x] Metric code is isolated from producer, transport, persistence, and provider details.
+- [x] SOLID, DRY, KISS, YAGNI, and coupling decisions are explicit.
+- [x] Nine tests cover contracts, alignment, metrics, and malformed artifacts.
+- [x] Docker executes the benchmark from a clean source commit.
+- [x] CI executes the pinned RAG producer-consumer contract without secrets.
+- [x] V1 and V2 evidence are generated from measured execution.
+- [x] README, benchmark JSON, and `project.yaml` report F1 consistently.
+- [x] The prediction schema was promoted to the reuse kit after its second adopter.
+- [x] Independent audit blockers were addressed before default-branch publication.
+
+Each new release still requires central exact-head GitHub Actions evidence.

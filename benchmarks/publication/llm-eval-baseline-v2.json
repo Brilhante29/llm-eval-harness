@@ -3,15 +3,15 @@
   "comparability_key": "llm-eval:f1:artifact-v1:4-cases",
   "environment": {
     "architecture": "amd64",
-    "hardware_class": "local-docker-desktop",
+    "hardware_class": "docker-desktop-cpu",
     "runtime": "python-3.12.13-slim"
   },
   "execution": {
-    "command": "docker run --name llm-eval-pub-a10b628 llm-eval-harness:publication-a10b628",
-    "duration_seconds": 1.047724,
+    "command": "docker run --name llm-eval-pub-2c52ad5 llm-eval-harness:publication-2c52ad5",
+    "duration_seconds": 0.70891,
     "exit_code": 0,
     "repeat": 1,
-    "started_at": "2026-08-03T06:20:42.041041Z"
+    "started_at": "2026-08-10T00:50:16.858369Z"
   },
   "metrics": [
     {
@@ -19,40 +19,40 @@
       "failures": 0,
       "name": "f1",
       "samples": [
-        0.7407407407407408,
-        0.8888888888888888,
-        1.0,
-        0.75
+        0.5957446808510638,
+        0.4285714285714286,
+        0.8085106382978724,
+        0.45454545454545453
       ],
       "summary": {
-        "avg_evaluator_latency_ms": 0.0914,
-        "avg_producer_latency_ms": 7.675,
+        "avg_evaluator_latency_ms": 0.0557,
+        "avg_producer_latency_ms": 0.2803,
         "case_count": 4,
-        "exact_match": 0.25,
-        "f1": 0.8449
+        "exact_match": 0.0,
+        "f1": 0.5718
       },
       "unit": "ratio",
-      "value": 0.8449
+      "value": 0.5718
     }
   ],
   "project": "llm-eval-harness",
   "provenance": {
-    "artifact_digest": "sha256:14c2a4eba967567fca73d639b0be7cef2059db75f702cd967bfe39741f951219",
+    "artifact_digest": "sha256:05f6c9e2442d0a275fe7830cbc0fc07864722271e7f9ccb5104dc3744ac31a29",
     "clean_tree": true,
     "dependency_lock_digest": "sha256:8908b8dde5f6a9d0cfb025ef464134e3b40197e4a2757ac573917e4ec7643a2c",
-    "image_digest": "sha256:540443363a671e4723a3fff49f8e10a761fec1b607a22cef0f0010958a522231",
-    "image_ref": "llm-eval-harness:publication-a10b628@sha256:540443363a671e4723a3fff49f8e10a761fec1b607a22cef0f0010958a522231",
+    "image_digest": "sha256:b1de0782fa87ed838c302e39564a3866059f6f4d3937beda4d29184ea53f53ce",
+    "image_ref": "llm-eval-harness:publication-2c52ad5@sha256:b1de0782fa87ed838c302e39564a3866059f6f4d3937beda4d29184ea53f53ce",
     "producer": "local",
-    "source_commit": "a10b62889414e14117684c263219ef20f7ed469e"
+    "source_commit": "2c52ad5613866f374aac82430e6f55ac4aa9bf90"
   },
-  "run_id": "3c5201da-37e0-4055-a09c-d06a1012add6",
+  "run_id": "5f3d38d0-a767-4c5a-9040-a49ac7dbf86a",
   "schema_version": 2,
   "workload": {
     "concurrency": 1,
     "config_digest": "sha256:99c4e522af4ceeddd193721eca79b1a843814a93f627a68e226834cc10f9d4e2",
-    "fixture_digest": "sha256:52aa2cff9819e26d2532ca65cd977c6489dcd6c52af3085528ed5ff698bc13ee",
+    "fixture_digest": "sha256:5baf4b92a4cd7a87aa587737cd039c0edc54aeb9d104413d67efc957e671918d",
     "measured_iterations": 4,
-    "version": "rag-predictions-v1",
+    "version": "rag-ee46136",
     "warmup_iterations": 0
   }
 }
