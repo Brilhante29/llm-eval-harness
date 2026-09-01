@@ -1,4 +1,4 @@
-# #2 llm-eval-harness
+# LLM Evaluation Harness
 
 **Claim:** Artifact-driven local evaluator for RAG/LLM answers with exact match, token F1, producer identity, and strict case-ID validation.
 
